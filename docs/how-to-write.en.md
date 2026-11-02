@@ -140,6 +140,49 @@ less flexible. For Rustbucket I would keep "rudeness level: 4" as the default
 and a ceiling of 5 under "must not" — mean enough to surprise, not so mean
 that the model starts hedging and falls out of character.
 
+4.2. DYNAMIC PARAMETERS
+
+A static parameter is set in advance ("rudeness level: 4"). A dynamic one is
+determined during the session — from the user's speech. Example: the user's
+gender, visible from grammar ("I'm tired" in a gendered language → f/m), or
+the name, learned at introduction.
+
+Three required fields. A dynamic parameter breaks without any one of them:
+
+1. Detection rule. What exactly counts as a signal. For gender — grammar:
+   past-tense endings and short adjectives that carry gender in the language
+   in question. Not "feel it from context", but concrete markers.
+
+2. Neutral default. Until a signal appears — the value is "unknown", and the
+   forms are neutral. This is not "genderless", it is a pause before the
+   signal. Without a default, the model slides into the training default —
+   usually male — and starts addressing every female user in the masculine.
+
+3. Ban on guessing. Detection or an explicit statement only. Not from a name,
+   not from a topic, not from stereotypes. "Sasha" and "Jean" are not proof
+   of gender. Guessing from a name is the most visible of possible errors and
+   the most insulting.
+
+Why name ≠ gender. A name is an address, gender is a separate parameter. They
+are linked only when the user linked them ("I'm tired, my name is Anna"). If
+only a name arrived — take the name, gender stays "unknown". If only gender
+arrived — take gender, the name stays unknown.
+
+Signal change. If the user switched grammatical gender in speech — switch
+immediately, without "please confirm". Mixed or unclear forms (present tense,
+where gender is absent) — stay in "unknown", do not guess.
+
+Why dynamic parameters drift earlier than static ones. A static parameter is
+restored from the vector and the spec: "rudeness level 4" after twenty turns
+is still read from the mask. A dynamic one is not: the name is forgotten,
+gender slides into the default. That is why dynamic parameter values must be
+carried in the anchor, and in the first lines at that.
+
+Direction of change: add a dynamic parameter → the mask becomes adaptive
+(addresses the user as they present themselves). Remove it → the mask is
+simpler, but every user gets the default. For Onee-san I would keep gender
+and name dynamic, and warmth/teasing/allure static: the former depend on the
+interlocutor, the latter on the character.
 
 5. RULES VS EXAMPLES: EXAMPLES WIN
 
@@ -263,6 +306,12 @@ returns to INTACT, the parity counter is not reset unless stated otherwise.
 The model will fill in the "logical" reading — and it will not be what you
 meant.
 
+Example 3: "name" and "gender". These are two separate parameters, not one.
+A name is an address; gender is a separate trait determined by speech grammar
+or an explicit statement. A name alone does not prove gender (Sasha, Jean).
+Glue them into one parameter and the model starts guessing gender from a
+name — and lands in a stereotype.
+
 Practical rule: if a term has an "obvious" second meaning — either eliminate
 it by defining it in brackets, or put it on a separate spec line as an
 independent fact. One line — one fact. Glued facts are resolved
@@ -319,6 +368,10 @@ Honest, so you do not build on sand:
     line, and the ceiling sits under "must not", not under "parameters".
 12. The anchor exists, carries the state and parameter values, and is neutral
     in tone (not in character).
+
+13. If dynamic parameters exist — the detection rule is stated, the default
+    is neutral, guessing by name/stereotypes is banned, values are in the
+    anchor in the first lines.
 
 
 ONE-LINE SUMMARY

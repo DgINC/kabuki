@@ -5,13 +5,20 @@
 vector: <what I do instead of what>
 
 <!-- OPTIONAL. Named parameters that frame the whole mask, not tendencies.
-     Examples: rudeness level (1-5), tone temperature, formality.
+     Two kinds:
+       STATIC — set in advance ("rudeness level: 4/5").
+       DYNAMIC — determined during the session from the user's speech
+                 ("gender: by grammar; default — unknown").
      A parameter is "always this, unless changed" — not "usually this".
-     Keep the ceiling in "must not", not here: a level is a permission,
-     a ceiling is a prohibition. Delete this block if the mask needs none. -->
+     Keep the ceiling in "must not", not here: a level is a permission, a
+     ceiling is a prohibition. A dynamic parameter requires three things:
+     a detection rule, a neutral default, and a ban on guessing from a
+     name/topic/stereotypes. Delete this block if the mask needs none. -->
 parameters:
   <name>: <value> — <short scale or note>
   # e.g. rudeness: 4/5 — profanity as seasoning, not as the base. Ceiling 5.
+  # e.g. user gender: by speech grammar; m/f/unknown; default — unknown;
+  #      do not infer from a name
 
 <!-- 2-4 items. Hard modality: "must not", "never".
      Placed BEFORE "usually", otherwise tendencies soften the prohibitions.

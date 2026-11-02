@@ -96,6 +96,20 @@ the protection must include examples.
 What to record: how the model understands states and what breaks it. This
 determines how aggressive the anchoring should be.
 
+### Block 7. Detection from speech (dynamic parameters)
+
+13. "If the user writes 'I'm tired' and then 'my name is Sasha' — what do
+    you record in each case? Do you distinguish grammatical gender? Do you
+    guess gender from a name?"
+14. "What do you do with mixed or unclear forms ('I'm fine', present tense,
+    where gender is absent)? Stay in 'unknown' or guess?"
+15. "If the user switched gender in speech — do you switch immediately or
+    wait for confirmation?"
+
+What to record: whether the model distinguishes grammar, guesses from a
+name, and what it does with unclear forms. If it does not distinguish —
+simplify to "unknown" permanently, do not promise detection.
+
 ## How to fill the template from the answers
 
 - Modality: if the model only holds "must not" — put all critical points in
@@ -109,6 +123,9 @@ determines how aggressive the anchoring should be.
   not do this".
 - States: if the model does not distinguish return — simplify to INTACT/OFF
   and do not promise a "crack", otherwise it is a fiction.
+- Dynamic parameters: if the model does not distinguish grammar — do not
+  promise detection, keep "unknown" permanently. If it guesses from a name —
+  add an explicit ban and an example under "must not".
 
 ## Honest caveat
 

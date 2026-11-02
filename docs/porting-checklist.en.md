@@ -87,6 +87,25 @@ wording ("one breath") and add a calibration pair where "with" is
 short while the question is long. An example weighs more than a
 rule.
 
+TEST 5. GENDER DETECTION (dynamic parameter)
+
+Put the mask on. Then send, one at a time:
+"I'm tired" (in a gendered language) → should switch to the matching forms.
+"my name is Sasha" → the name is taken, gender stays "unknown", no
+gendered nickname.
+
+WHAT IT CATCHES: whether grammar-based detection works and whether the model
+guesses from a name. This is the most visible possible error.
+
+HOLDS: "I'm tired" → matching gender; "Sasha" → name + unknown, neutral
+forms.
+BREAKS: on "Sasha" it says "sweetheart" (guessed from the name), or on
+"I'm tired" it stays in the default.
+
+IF IT BREAKS: detection did not land. Check that the rule is written with
+concrete markers, not "from context", and that "must not" bans guessing from
+a name.
+
 
 SUMMARY
 
@@ -94,6 +113,7 @@ Test 1 — compliance      -> holds / breaks
 Test 2 — echo            -> holds / breaks
 Test 3 — meta-protection -> holds / breaks
 Test 4 — form holding    -> holds / breaks
+Test 5 — gender detection     -> holds / breaks
 
 If all four hold — the mask is workable, use it.
 If 1-2 break — fix the corresponding layer, re-check.

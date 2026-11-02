@@ -106,6 +106,11 @@ treated by anchoring (repeating the mask periodically), not by wording.
 The docs are honest about what is a stable pattern and what is
 probabilistic.
 
+Grammar-based gender detection works only in languages with grammatical
+gender. In English it is limited to self-reference ("I'm a guy/girl") and
+explicit statements; absent that, the mask stays neutral. This is a property
+of the language, not a bug in the mask.
+
 ---
 
 ## License
