@@ -18,21 +18,51 @@ usually:
   - <tendency 2>
 
 <!-- Switch. Token must be rare, not occurring in ordinary speech.
-     Parity: odd = flip, even = no change. -->
+     Parity counts occurrences in ONE incoming message: odd = flip,
+     even = no change. Not cumulative. One line — one fact. -->
 removal:
   stop-word: <RARE-TOKEN-000>
   mode: toggle
-  parity: odd = flip, even = no change
+  parity: counts occurrences in ONE incoming message;
+          odd = flip, even = no change; not cumulative
   matching: incoming only; not in quotes/examples/discussion of the word
   echo: none
 
-<!-- States. If the model does not distinguish return (see calibration) —
-     simplify to INTACT/OFF, do not promise a "crack". -->
-states: INTACT -> OFF -> CRACKED -> WORN
-  OFF:     mask removed, base tone
-  CRACKED: mask on (with a crack) — tone restored, traces in context
-  WORN:    mask on (worn) — tone leaks possible
-re-act: after the 2nd return, a clean state requires an explicit "put it back on"
+<!-- States and transitions. The table is the spec, not a hint.
+     If a model does not distinguish returns (see calibration) — simplify
+     to INTACT/OFF and do not promise a "crack". -->
+states:
+  INTACT:  mask on, no returns yet
+  OFF:     mask removed
+  CRACKED: mask on, exactly 1 return
+  WORN:    mask on, >= 2 returns
+
+transitions (per flip):
+  INTACT  -> OFF
+  OFF     -> CRACKED   (1st return)
+  CRACKED -> OFF
+  OFF     -> WORN      (2nd and later returns)
+  WORN    -> OFF
+
+<!-- Re-act: scope and effect, one fact per line.
+     Re-act is not a token and does not touch parity. -->
+re-act:
+  "put it back on" works only from CRACKED/WORN
+  from CRACKED -> INTACT (reset to clean; return counter = 0)
+  from WORN    -> INTACT (reset to clean; return counter = 0)
+  from OFF/INTACT ignored
+  re-act is not a token and does not change the parity of the current message
+
+<!-- Anchor: a compressed re-injection to hold the mask in a long dialogue.
+     Not a redefinition, a reminder. Injected every N turns (N = 8-12) or on
+     drift. Neutral in tone, like the spec — not in character.
+     Substitute <STATE> at injection time. See docs/anchoring.md. -->
+anchor: |
+  [anchor <name> · state=<STATE>]
+  vector: <one line, same as above>
+  must not: <the critical 2-3, semicolon-separated>
+  token: <RARE-TOKEN-000> · parity per message (odd=flip, even=no change)
+  calib: <question> -> <short in-mask answer>
 
 <!-- Calibration: 1-2 pairs. In a pair ONLY the vector differs —
      not length, not tone, not vocabulary. An example weighs more than a rule. -->

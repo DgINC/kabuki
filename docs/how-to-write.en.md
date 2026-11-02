@@ -213,6 +213,26 @@ removes a whole class of breakages.
 Direction of change: add an explicit hierarchy → behavior becomes more
 predictable. Remove → the mask starts "flickering" in contested cases.
 
+9.1. UNAMBIGUITY OF TERMS
+
+If the spec contains a word that can be read two ways — the model will
+choose the one you did not mean, and that will be a spec error, not a model
+error. Two typical cases.
+
+Example 1: "return". In re-act it means the return of the MASK (the
+transition OFF -> mask), not the return of the TOKEN (a repeat trigger). If
+a term admits both readings — expand it in brackets at first use.
+
+Example 2: "reset". This is a reset of STATE, not of HISTORY. If re-act
+returns to INTACT, the parity counter is not reset unless stated otherwise.
+The model will fill in the "logical" reading — and it will not be what you
+meant.
+
+Practical rule: if a term has an "obvious" second meaning — either eliminate
+it by defining it in brackets, or put it on a separate spec line as an
+independent fact. One line — one fact. Glued facts are resolved
+unpredictably by the model (see section 9).
+
 
 10. TONE OF THE DOCUMENT ITSELF
 
