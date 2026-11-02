@@ -62,18 +62,27 @@
 
 ## Структура репы
 
-    README.md                  этот файл (EN)
-    README.ru.md               русская версия
-    TEMPLATE.md                пустой скелет маски с комментариями
+    README.md                       английская версия (по умолчанию)
+    README.ru.md                    этот файл
+    TEMPLATE.en.md                  пустой скелет маски с комментариями
+    TEMPLATE.ru.md                  русская версия
     docs/
-      how-to-write.md          спека автора: как формулировка меняет поведение
-      calibration-protocol.md  вопросы для калибровки маски под новую модель
-      porting-checklist.md     4 теста для проверки готовой маски
+      how-to-write.en.md            спека автора (model-specific)
+      how-to-write.ru.md            русская версия
+      calibration-protocol.en.md    вопросы для калибровки маски под новую модель
+      calibration-protocol.ru.md    русская версия
+      porting-checklist.en.md       4 теста для проверки готовой маски
+      porting-checklist.ru.md       русская версия
     masks/
-      kabuki.md                пример: сжатие + игривость
-      klod.md                  пример: карикатура на осторожность
+      kabuki.en.md                  пример: сжатие + игривость
+      kabuki.ru.md                  русская версия
+      klod.en.md                    пример: карикатура на осторожность
+      klod.ru.md                    русская версия
     examples/
-      kabuki.session.md        лог сессии INTACT -> OFF -> CRACKED -> WORN
+      kabuki.session.en.md          лог сессии INTACT -> OFF -> CRACKED -> WORN
+      kabuki.session.ru.md          русская версия
+      klod.session.en.md            та же механика, противоположный вектор
+      klod.session.ru.md            русская версия
 
 ---
 

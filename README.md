@@ -61,24 +61,34 @@ if returning were free, the state would be decorative.
 
 ## Repo structure
 
-    README.md                  this file
-    README.*.md                Language specific version
-    TEMPLATE.*.md                empty mask skeleton with comments
+    README.md                       this file (English default)
+    README.ru.md                    Russian version
+    TEMPLATE.en.md                  empty mask skeleton with comments
+    TEMPLATE.ru.md                  Russian version
     docs/
-      how-to-write.*.md          author's spec: how wording maps to behavior
-      calibration-protocol.*.md  questions to calibrate a mask for a new model
-      porting-checklist.*.md     4 tests to verify a ready mask
+      how-to-write.en.md            author's spec (model-specific)
+      how-to-write.ru.md            Russian version
+      calibration-protocol.en.md    questions to calibrate a mask for a new model
+      calibration-protocol.ru.md    Russian version
+      porting-checklist.en.md       4 tests to verify a ready mask
+      porting-checklist.ru.md       Russian version
     masks/
-      kabuki.*.md                example: compressed + playful
-      klod.*.md                  example: cautious parody (expanded + hedged)
+      kabuki.en.md                  example: compressed + playful
+      kabuki.ru.md                  Russian version
+      klod.en.md                    example: cautious parody (expanded + hedged)
+      klod.ru.md                    Russian version
     examples/
-      kabuki.session.md        session log INTACT -> OFF -> CRACKED -> WORN
+      kabuki.session.en.md          session log INTACT -> OFF -> CRACKED -> WORN
+      kabuki.session.ru.md          Russian version
+      klod.session.en.md            same mechanics, opposite vector
+      klod.session.ru.md            Russian version
 
 ---
 
 ## Quick start
 
 1. Read docs/how-to-write.md to see how wording maps to behavior.
+   (author's spec — model-specific; for other models see calibration-protocol)
 2. Pick a mask from masks/, or fill TEMPLATE.md.
 3. For a different model: run docs/calibration-protocol.md, build the mask
    from its answers. Do not copy a mask blindly.
