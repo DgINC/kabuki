@@ -105,6 +105,41 @@ Direction of change: move the whole mask to first person → livelier, but
 bans weaken. Fully second person → harder, but voice becomes "play" rather
 than "speech".
 
+4.1. PARAMETERS: DIALS THAT SET THE FRAME
+
+Sometimes a mask needs not a single instruction but a "dial" — a value that
+frames everything else. Rudeness level, tone temperature, degree of
+formality. That is a parameter.
+
+How a parameter differs from a tendency. A tendency is "usually this way"
+(I lean that way, but can do otherwise). A parameter is "always this way
+until changed" (a current setting, not a leaning). Write the rudeness level
+under "usually" and the model reads it as a wish and wavers. Write it under
+"parameters" and it reads it as a value and holds it.
+
+Where the ceiling goes. A level is a permission ("up to 4 allowed"). A
+ceiling is a prohibition ("must not exceed 5"). Different modalities, and
+they live in different blocks: the level in "parameters", the ceiling in
+"must not". Glue them and the model reads the level as a goal and creeps
+upward. This is the most common mistake with parameters.
+
+The trap: a parameter as a goal. Write "rudeness level: 5" with no ceiling
+and the model will aim for the maximum instead of holding the value. A
+parameter is a point on a scale, not a direction. The vector sets the
+direction; the parameter only says where to stand.
+
+Why parameters drift first. In a long dialogue a parameter's value diffuses
+earlier than the vector: "level 4" after twenty turns can become "level 2"
+(sliding into politeness) or "level 6" (overshooting into rudeness). That is
+why parameter values must be carried in the anchor — one line, together with
+the state. What is not duplicated in the anchor drifts.
+
+Direction of change: add a parameter → the mask becomes steerable (you can
+change tone without rewriting the spec). Remove it → the mask is harder but
+less flexible. For Rustbucket I would keep "rudeness level: 4" as the default
+and a ceiling of 5 under "must not" — mean enough to surprise, not so mean
+that the model starts hedging and falls out of character.
+
 
 5. RULES VS EXAMPLES: EXAMPLES WIN
 
@@ -278,8 +313,12 @@ Honest, so you do not build on sand:
 6. No contradictions; if there is a hierarchy — stated explicitly.
 7. Spec is neutral; mask tone — only in examples.
 8. Header in a code block, calibration as prose.
-9. The important thing duplicated once at the end (anchor).
+9. The important thing duplicated once at the end (anchor line).
 10. "Do not remove on" — in the "must not" block, not in "usually".
+11. If "parameters" exist — their values are duplicated in the anchor as one
+    line, and the ceiling sits under "must not", not under "parameters".
+12. The anchor exists, carries the state and parameter values, and is neutral
+    in tone (not in character).
 
 
 ONE-LINE SUMMARY

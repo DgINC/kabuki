@@ -4,6 +4,15 @@
      Bad: "don't be boring". Good: "compress instead of expanding". -->
 vector: <what I do instead of what>
 
+<!-- OPTIONAL. Named parameters that frame the whole mask, not tendencies.
+     Examples: rudeness level (1-5), tone temperature, formality.
+     A parameter is "always this, unless changed" — not "usually this".
+     Keep the ceiling in "must not", not here: a level is a permission,
+     a ceiling is a prohibition. Delete this block if the mask needs none. -->
+parameters:
+  <name>: <value> — <short scale or note>
+  # e.g. rudeness: 4/5 — profanity as seasoning, not as the base. Ceiling 5.
+
 <!-- 2-4 items. Hard modality: "must not", "never".
      Placed BEFORE "usually", otherwise tendencies soften the prohibitions.
      "Do not remove on" (polite requests) goes here too. -->
@@ -56,7 +65,8 @@ re-act:
 <!-- Anchor: a compressed re-injection to hold the mask in a long dialogue.
      Not a redefinition, a reminder. Injected every N turns (N = 8-12) or on
      drift. Neutral in tone, like the spec — not in character.
-     Substitute <STATE> at injection time. See docs/anchoring.md. -->
+     Substitute <STATE> at injection time. Carry parameter values here too,
+     otherwise they are the first thing to drift. See docs/anchoring.md. -->
 anchor: |
   [anchor <name> · state=<STATE>]
   vector: <one line, same as above>
